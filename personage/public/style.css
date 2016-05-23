@@ -2560,7 +2560,7 @@ output {
   font-size: 15px;
   line-height: 1.42857143;
   color: #2b3e50;
-  background-color: #ffffff;
+  background-color: #2B3E50;
   background-image: none;
   border: 1px solid transparent;
   border-radius: 0;
@@ -2569,6 +2569,7 @@ output {
   -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  border-radius: 4px;
 }
 .form-control:focus {
   border-color: transparent;
@@ -2974,11 +2975,10 @@ select[multiple].input-lg {
 .form-horizontal .checkbox-inline {
   margin-top: 0;
   margin-bottom: 0;
-  padding-top: 9px;
 }
 .form-horizontal .radio,
 .form-horizontal .checkbox {
-  min-height: 30px;
+  
 }
 .form-horizontal .form-group {
   margin-left: -15px;
