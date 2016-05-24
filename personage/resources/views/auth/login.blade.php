@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" style="display: block;height: 92px;float: right;">
                                 <i class="fa fa-btn fa-sign-in"></i>Login
                             </button>
                         </div>    
