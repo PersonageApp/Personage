@@ -42,11 +42,6 @@
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Personage Applicatie 
-                    <?php 
-                        if ($user = DB::table('users')->where('role', '1')->first()) {
-   echo 'test';
-}
-                    ?>
                 </a>
             </div>
 
@@ -70,7 +65,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <?php
                                     if ($user = DB::table('users')->where('role', '1')->first()) {
-                                        echo "<li><a href='{{ url('/logout') }}'><i class='fa fa-btn fa-sign-out'></i>Gebruikers beheren</a></li>";
+                                        echo "<li><a href='/gebruikers'><i class='fa fa-btn fa-user'></i>Gebruikers beheren</a></li>";
                                     }
                                 ?>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Uitloggen</a></li>
