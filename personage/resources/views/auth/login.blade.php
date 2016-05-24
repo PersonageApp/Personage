@@ -28,14 +28,14 @@
                         <div class="form-group" style="margin-bottom: 0px;">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="remember"> Remember Me
+                                    <input type="checkbox" name="remember"> Onthoud mij
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" style="display: block;height: 92px;float: right;">
+                            <button type="submit" class="btn btn-primary" style="display: block;height: 92px;float: right;border-radius: 4px;">
                                 <i class="fa fa-btn fa-sign-in"></i>Login
                             </button>
                         </div>    
