@@ -12,11 +12,6 @@
                     <div class="col-md-9">
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"> 
                             <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mailadres">
-                            @if ($errors->has('email'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                            @endif
                         </div>   
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <input type="password" class="form-control" name="password" placeholder="Wachtwoord">
@@ -33,6 +28,13 @@
                                 </label>
                             </div>
                         </div>
+                        @if ($errors->has('email'))
+                        <div class="form-group" style="margin-bottom: 0px;">
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                                </div>
+                            @endif
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
