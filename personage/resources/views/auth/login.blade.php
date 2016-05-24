@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-9" style="padding: 0px 0px 0px 15px !important;">
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"> 
                             <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mailadres">
                             @if ($errors->has('email'))
@@ -25,7 +25,7 @@
                                 </span>
                             @endif
                         </div> 
-                        <div class="form-group">
+                        <div class="form-group" style="margin-bottom: 0px;">
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="remember"> Remember Me
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary" style="display: block;height: 92px;float: right;">
                                 <i class="fa fa-btn fa-sign-in"></i>Login
