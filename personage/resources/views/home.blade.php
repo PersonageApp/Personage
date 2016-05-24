@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    Nick is een sukkel en jesse weet hoe hij waar deze pagina staat.
                 </div>
             </div>
         </div>
