@@ -8,6 +8,7 @@
             </div>
             <div class="col-md-9" style="padding: 0px 0px 0px 15px !important;">
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                    {!! csrf_field() !!}
                     <div class="col-md-9">
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"> 
                             <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-mailadres">
