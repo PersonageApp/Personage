@@ -17,3 +17,23 @@
 Route::auth();
 
 Route::get('/', 'HomeController@index');
+
+Route::get('/verhalen', function() {
+	return view('verhalen');
+});
+
+Route::post('/verhalen/post', function (Request $request) {
+	if ($validator->fails()) {
+		return redirect('/')
+			->withInput()
+			->withErrors($validator);
+	}
+
+    $verhalen->save();
+
+    return redirect('/');
+});
+
+Route::delete('/verhalen/{verhalen}', function (Verhalen $verhalen) {
+
+});
