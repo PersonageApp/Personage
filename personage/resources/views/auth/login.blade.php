@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-    <span id="danger"><span class="dd animated bounce">
+    <span id="danger"><span class="dd animated bounceInDown">
         <div class="col-md-6 col-md-push-3" style="background-color: #4e5d6c; padding: 25px; border-radius: 4px;">
             <div class="col-md-3" style="padding: 0px !important;">
                 <img src="{{ URL::asset('images/user.png') }}" style="width: 100%;">
