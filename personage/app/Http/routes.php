@@ -23,12 +23,16 @@ Route::get('/verhalen', function() {
 });
 
 Route::post('/verhalen/post', function (Request $request) {
+	$validator = Validator::make(Request::all(), ['naam' => 'required|max:50','verhaal' => 'required']);
 	if ($validator->fails()) {
 		return redirect('/')
 			->withInput()
 			->withErrors($validator);
 	}
 
+	$verhalen = new \App\Verhalen;
+    $verhalen->naam = Request::get('naam');
+    $verhalen->verhaal = Request::get('verhaal');
     $verhalen->save();
 
     return redirect('/');
