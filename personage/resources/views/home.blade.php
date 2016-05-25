@@ -26,11 +26,16 @@
       <td>'; echo $user->verhaal; echo'</td>
     </tr>';
     }
-}); ?></tbody></table>
-                    <form action="#">
-                        <input type="text" class="form-control">
-                        <input type="submit" class="btn-primary">
-                    </form>
+}); ?></tbody></table> 
+                    <div class="container">
+    @include('common.errors')
+    <form action="{{ url('verhalen/post') }}" method="POST">
+      {{ csrf_field() }}
+      <input type="text" name="naam" id="task-name">
+      <input type="text" name="verhaal" id="task-name">
+      <button type="submit">Add Verhaal</button>
+    </form> 
+  </div>
                 </div>
             </div>
         </div>
