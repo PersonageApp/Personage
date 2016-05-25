@@ -2552,6 +2552,7 @@ output {
   line-height: 1.42857143;
   color: #2b3e50;
 }
+.dd                         { animation-delay:0.3s; -moz-animation-delay:0.3; -webkit-animation-delay:0.3s; }
 .form-control {
   display: block;
   width: 100%;

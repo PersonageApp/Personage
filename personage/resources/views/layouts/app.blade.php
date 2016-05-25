@@ -15,6 +15,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ URL::asset('style.css') }}" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/animatecss/2.1.0/animate.min.css">
 
     <style>
         body {
