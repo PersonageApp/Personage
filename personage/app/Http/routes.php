@@ -38,8 +38,8 @@ Route::post('/verhalen/post', function (Request $request) {
     return redirect('/');
 });
 
-Route::delete('/verhalen/{verhalen}', function (Verhalen $verhalen) {
-    $verhalen->delete();
+Route::delete('verhalen/{verhaal}', function ($id) {
+	$verhaal = DB::table('verhalen')->where('verhaal_id', $id)->delete();
 
     return redirect('/');
 });

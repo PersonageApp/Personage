@@ -25,7 +25,7 @@
       <td>'; echo $user->naam; echo'</td>
       <td>'; echo $user->verhaal; echo'</td>
       <td>';?>
-      <form action="{{ url('task/'.$task->id) }}" method="POST">
+      <form action="{{ url('verhalen/'.$user->verhaal_id) }}" method="POST">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
             <button type="submit" class="btn btn-danger">
