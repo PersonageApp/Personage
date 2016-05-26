@@ -3,59 +3,66 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Voeg uw verhaal toe</div>
-
+              <div class="panel-heading">Verhaal toevoegen?</div>
                 <div class="panel-body">
-                <table class="table table-striped table-hover ">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>naam</th>
-      <th>verhaal</th>
-    </tr>
-  </thead>
-  <tbody>
-                    <?php DB::table('verhalen')->orderBy('verhaal_id')->chunk(100, function($users) {
-    foreach ($users as $user) {
-        echo '
-    <tr>
-      <td>'; echo $user->verhaal_id; echo'</td>
-      <td>'; echo $user->naam; echo'</td>
-      <td>'; echo $user->verhaal; echo'</td>
-      <td>';?>
-      <form action="{{ url('verhaal/'.$user->verhaal_id . '/edit') }}" method="GET">
-            {{ csrf_field() }}
-            {{ method_field('PUT') }}
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-edit"></i> Bewerken
-            </button>
-        </form></td><td>
-      <form action="{{ url('verhalen/'.$user->verhaal_id) }}" method="POST">
-            {{ csrf_field() }}
-            {{ method_field('DELETE') }}
-            <button type="submit" class="btn btn-danger">
-                <i class="fa fa-trash"></i> Delete
-            </button>
-        </form>
-    </td>
-    </tr>
-    <?php }
-}); ?></tbody></table> 
-                    <div class="container">
-    @include('common.errors')
-    <form action="{{ url('verhalen/post') }}" method="POST">
-      {{ csrf_field() }}
+                  @include('common.errors')
+                    <form action="{{ url('verhalen/post') }}" method="POST">
+                      {{ csrf_field() }}
+                      <input type="text" class="form-control verhaal-toevoegen" name="naam">
+                      <textarea class="form-control" id="verhaal-text" name="verhaal"></textarea>
+                      <button type="submit" class="btn btn-primary">Voeg verhaal toe</button>
+                    </form> 
+                </div>
+            </div>
+        </div> 
+        <div class="col-md-12">
+         <div class="panel panel-default">
+          <div class="panel-heading">Bestaande verhalen</div>    
+            <div class="panel-body">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>naam</th>
+                    <th>verhaal</th>
+                  </tr>
+                </thead>
+              <tbody>
+              <?php DB::table('verhalen')->orderBy('verhaal_id')->chunk(100, function($users) {
+                foreach ($users as $user) {
+                  echo '
+                    <tr>
+                      <td class="tabel-kolom">'; echo $user->verhaal_id; echo'</td>
+                      <td class="tabel-kolom">'; echo $user->naam; echo'</td>
+                      <td class="tabel-kolom">'; echo $user->verhaal; echo'</td>
+                      <td';?>
+                        <form action="{{ url('verhaal/'.$user->verhaal_id . '/edit') }}" method="GET">
+                          {{ csrf_field() }}
+                          {{ method_field('PUT') }}
+                          <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-edit"></i> Bewerken
+                          </button>
+                        </form></td><td>
+                        <form action="{{ url('verhalen/'.$user->verhaal_id) }}" method="POST">
+                          {{ csrf_field() }}
+                          {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-danger">
+                              <i class="fa fa-trash"></i> Delete
+                            </button>
+                        </form>
+                      </td>
+                    </tr>
+                  <?php }
+                }); ?></tbody></table> 
 
-      <input type="text" name="naam" id="task-name">
-      <input type="text" name="verhaal" id="task-name">
-      <button type="submit">Add Verhaal</button>
-    </form> 
-  </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+        </div>  
+        
+  
 @endsection

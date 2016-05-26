@@ -7008,3 +7008,20 @@ a.list-group-item-danger.active:focus {
 .popover-title {
   border: none;
 }
+
+.verhaal-toevoegen {
+  width:100%;
+  display:block;
+  margin-bottom:15px;
+}
+
+#verhaal-text {
+  display: block;
+  height: 200px;
+  resize: none;
+  margin-bottom: 15px;
+}
+
+.tabel-kolom {
+  width:30%;
+}
