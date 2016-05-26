@@ -39,5 +39,7 @@ Route::post('/verhalen/post', function (Request $request) {
 });
 
 Route::delete('/verhalen/{verhalen}', function (Verhalen $verhalen) {
+    $verhalen->delete();
 
+    return redirect('/');
 });
