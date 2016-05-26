@@ -25,6 +25,13 @@
       <td>'; echo $user->naam; echo'</td>
       <td>'; echo $user->verhaal; echo'</td>
       <td>';?>
+      <form action="{{ url('verhaal/'.$user->verhaal_id . '/edit') }}" method="GET">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-edit"></i> Bewerken
+            </button>
+        </form></td><td>
       <form action="{{ url('verhalen/'.$user->verhaal_id) }}" method="POST">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
