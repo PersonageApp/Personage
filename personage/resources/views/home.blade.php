@@ -37,16 +37,14 @@
                   $i++;
                   echo '
                     <tr class="verhaal-tabel">
-                      <td class="tabel-kolom">'; echo $i; echo'</td>
+                      <td class="tabel-kolom-count">'; echo $i; echo'</td>
                       <td class="tabel-kolom">'; echo $user->naam; echo'</td>
                       <td>';?>
-                        <form action="{{ url('verhalen/'.$user->verhaal_id .'/edit') }}" method="GET">
-                          {{ csrf_field() }}
-                          {{ method_field('PUT') }}
-                          <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-edit"></i> Bewerken
-                          </button>
-                        </form></td><td>
+                        <a class="button-test btn btn-primary" href="{{ url('verhalen/'.$user->verhaal_id .'/bekijken') }}"><i class="fa fa-edit"></i>Bekijken</a>
+                        </td><td>
+                        <a class="button-test btn btn-primary" href="{{ url('verhalen/'.$user->verhaal_id .'/schrijven') }}"><i class="fa fa-edit"></i> Schrijven</a>
+                        </td><td>
+
                         <form action="{{ url('verhalen/'.$user->verhaal_id) }}" method="POST">
                           {{ csrf_field() }}
                           {{ method_field('DELETE') }}

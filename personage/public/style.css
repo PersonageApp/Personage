@@ -2278,7 +2278,6 @@ th {
 .table > tfoot > tr > td {
   padding: 6px;
   line-height: 1.42857143;
-  vertical-align: top;
   border-top: 1px solid #4e5d6c;
 }
 .table > thead > tr > th {
@@ -7022,10 +7021,19 @@ a.list-group-item-danger.active:focus {
   margin-bottom: 15px;
 }
 
-.tabel-kolom {
-  width:50%;
+.tabel-kolom-count{
+  width:5%;
+  font-size: 15px;
 }
 
-.verhaal-tabel td {
-  border-bottom:1px solid #fff;
+.tabel-kolom {
+  font-size:15px;
+  width:85%;
+  margin-top:5px;
+  text-transform: capitalize;
+}
+
+.button-test {
+  display:block;
+  list-style:none;
 }

@@ -14,7 +14,7 @@ class VerhaalController extends Controller
     public function showEditForm($id)
     	{
     		$verhaal = DB::table('verhalen')->where('verhaal_id', $id)->get();
-    		return view('verhaal.edit', [
+    		return view('verhaal.schrijven', [
     			'verhaal' => $verhaal
     			]);
     	}
@@ -22,6 +22,14 @@ class VerhaalController extends Controller
 	public function update($id) 
 	{
 		$verhaal = DB::table('verhalen')->where('verhaal_id', $id)->update();
-		
+
 	}
+
+	public function bekijkVerhaal($id)
+		{
+    		$verhaal = DB::table('verhalen')->where('verhaal_id', $id)->get();
+    		return view('verhaal.bekijken', [
+    			'verhaal' => $verhaal
+    			]);
+    	}	
 }

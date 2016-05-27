@@ -44,5 +44,7 @@ Route::delete('verhalen/{verhaal}', function ($id) {
     return redirect('/');
 });
 
-Route::get('verhalen/{verhaal}/edit', 'VerhaalController@showEditForm');
-Route::post('verhalen/{verhaal}/edit', 'VerhaalController@update');
+Route::get('verhalen/{verhaal}/schrijven', 'VerhaalController@showEditForm');
+Route::post('verhalen/{verhaal}/schrijven', 'VerhaalController@update');
+
+Route::get('verhalen/{verhaal}/bekijken', 'VerhaalController@bekijkVerhaal');
