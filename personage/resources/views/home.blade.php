@@ -41,7 +41,9 @@
                       <td class="tabel-kolom">'; echo $user->naam; echo'</td>
                       <td class="tabel-kolom">'; echo $user->verhaal; echo'</td>
                       <td>';?>
-                        <form action="{{ url('verhalen/'.$user->verhaal_id .'/edit') }}" method="POST">  
+                        <form action="{{ url('verhalen/'.$user->verhaal_id .'/edit') }}" method="GET">
+                          {{ csrf_field() }}
+                          {{ method_field('PUT') }}
                           <button type="submit" class="btn btn-primary">
                             <i class="fa fa-edit"></i> Bewerken
                           </button>
