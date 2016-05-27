@@ -30,17 +30,18 @@
                   </tr>
                 </thead>
               <tbody>
+
               <?php DB::table('verhalen')->orderBy('verhaal_id')->chunk(100, function($users) {
+                $i =0;
                 foreach ($users as $user) {
+                  $i++;
                   echo '
                     <tr>
-                      <td class="tabel-kolom">'; echo $user->verhaal_id; echo'</td>
+                      <td class="tabel-kolom">'; echo $i; echo'</td>
                       <td class="tabel-kolom">'; echo $user->naam; echo'</td>
                       <td class="tabel-kolom">'; echo $user->verhaal; echo'</td>
-                      <td';?>
-                        <form action="{{ url('verhaal/'.$user->verhaal_id . '/edit') }}" method="GET">
-                          {{ csrf_field() }}
-                          {{ method_field('PUT') }}
+                      <td>';?>
+                        <form action="{{ url('verhalen/'.$user->verhaal_id .'/edit') }}" method="POST">  
                           <button type="submit" class="btn btn-primary">
                             <i class="fa fa-edit"></i> Bewerken
                           </button>
@@ -49,7 +50,7 @@
                           {{ csrf_field() }}
                           {{ method_field('DELETE') }}
                             <button type="submit" class="btn btn-danger">
-                              <i class="fa fa-trash"></i> Delete
+                              <i class="fa fa-trash"></i> Verwijderen
                             </button>
                         </form>
                       </td>
