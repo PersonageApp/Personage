@@ -7023,5 +7023,9 @@ a.list-group-item-danger.active:focus {
 }
 
 .tabel-kolom {
-  width:30%;
+  width:50%;
+}
+
+.verhaal-tabel td {
+  border-bottom:1px solid #fff;
 }

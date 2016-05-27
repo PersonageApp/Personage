@@ -26,7 +26,7 @@
                   <tr>
                     <th>#</th>
                     <th>naam</th>
-                    <th>verhaal</th>
+                   
                   </tr>
                 </thead>
               <tbody>
@@ -36,10 +36,9 @@
                 foreach ($users as $user) {
                   $i++;
                   echo '
-                    <tr>
+                    <tr class="verhaal-tabel">
                       <td class="tabel-kolom">'; echo $i; echo'</td>
                       <td class="tabel-kolom">'; echo $user->naam; echo'</td>
-                      <td class="tabel-kolom">'; echo $user->verhaal; echo'</td>
                       <td>';?>
                         <form action="{{ url('verhalen/'.$user->verhaal_id .'/edit') }}" method="GET">
                           {{ csrf_field() }}
