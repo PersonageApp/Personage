@@ -22,6 +22,14 @@ Route::get('/verhalen', function() {
 	return view('verhalen');
 });
 
+Route::get('/werelden', function() {
+	return view('werelden');
+});
+
+Route::get('/werelden/succes', function() {
+	return view('wereldToegevoegd');
+});
+
 Route::post('/verhalen/post', function (Request $request) {
 	$validator = Validator::make(Request::all(), ['naam' => 'required|max:50','verhaal' => 'required']);
 	if ($validator->fails()) {
@@ -34,6 +42,22 @@ Route::post('/verhalen/post', function (Request $request) {
     $verhalen->naam = Request::get('naam');
     $verhalen->verhaal = Request::get('verhaal');
     $verhalen->save();
+
+    return redirect('/');
+});
+
+Route::post('/werelden/post', function (Request $request) {
+	$validator = Validator::make(Request::all(), ['naam' => 'required|max:50','beschrijving' => 'required']);
+	if ($validator->fails()) {
+		return redirect('/')
+			->withInput()
+			->withErrors($validator);
+	}
+
+	$werelden = new \App\Werelden;
+    $werelden->naam = Request::get('naam');
+    $werelden->beschrijving = Request::get('beschrijving');
+    $werelden->save();
 
     return redirect('/');
 });
