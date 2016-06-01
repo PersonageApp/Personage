@@ -27,7 +27,7 @@
                 <th>#</th>
                 <th>Naam verhaal</th>
                 <th>Bekijken</th>
-                <th>Schrijven</th>
+                <th>Bewerken</th>
                 <th>Verwijderen</th>               
               </tr>
             </thead>
@@ -36,9 +36,10 @@
                 $i =0; foreach ($users as $user) {
                   $i++;
                     echo '<tr class="verhaal-tabel"><td class="tabel-kolom-count">'; echo $i; echo'</td><td class="tabel-kolom">'; echo $user->naam; echo'</td>';?>
-                    <td><a class="button-test btn btn-primary" href="{{ url('verhalen/'.$user->verhaal_id .'/bekijken') }}"><i class="fa fa-edit"></i>Bekijken</a></td>
-                    <td><a class="button-test btn btn-primary" href="{{ url('verhalen/'.$user->verhaal_id .'/schrijven') }}"><i class="fa fa-edit"></i> Schrijven</a></td>
+                    <td><a class="button-test btn btn-primary" href="{{ url('verhalen/'.$user->verhaal_id .'/bekijken') }}"><i class="fa fa-edit"></i>Bewerken</a></td>
+                     <td><a class="button-test btn btn-primary" href="{{ url('verhalen/'.$user->verhaal_id .'/edit') }}"><i class="fa fa-edit"></i>schrijven</a></td>
                     <td>
+
                       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i> Verwijderen</button>
                     </td>
                     <!-- Modal -->

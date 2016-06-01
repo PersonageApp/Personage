@@ -19,10 +19,14 @@ class VerhaalController extends Controller
     			]);
     	}
 
-	public function update($id) 
+	public function update($id, Request $request) 
 	{
-		$verhaal = DB::table('verhalen')->where('verhaal_id', $id)->update();
+		DB::table('verhalen')->where('verhaal_id', $id)->update([
+				'verhaal' => $request['verhaal'],
+				'naam' => $request['naam']
+			]);
 
+		return redirect('/');
 	}
 
 	public function bekijkVerhaal($id)
@@ -30,6 +34,15 @@ class VerhaalController extends Controller
     		$verhaal = DB::table('verhalen')->where('verhaal_id', $id)->get();
     		return view('verhaal.bekijken', [
     			'verhaal' => $verhaal
+    			]);
+    	}	
+
+    public function bekijkBewerken($id)
+    	{
+    		$verhaal = DB::table('verhalen')->where('verhaal_id', $id)->get();
+    		return view('verhaal.edit', [
+    			'verhaal' => $verhaal,
+    			'id' => $id
     			]);
     	}	
 }

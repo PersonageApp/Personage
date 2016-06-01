@@ -2,12 +2,12 @@
 
 @section('content')
 	<div class="container">
-	<h1>Edit het verhaal</h1>
+	<h1>Bewerk het verhaal</h1>
 	<div class="panel panel-default">
         <div class="panel-heading">Verhaal bewerken?</div>
         <div class="panel-body">
             @include('common.errors')
-            <form action="{{ url('verhalen/post') }}" method="POST">
+            <form action="{{ url('verhalen/' . $id . '/edit') }}" method="POST">
                 {{ csrf_field() }}
                 <input type="text" class="form-control verhaal-toevoegen" value="{{ $verhaal[0]->naam }}" name="naam">
                 <textarea class="form-control" id="verhaal-text" name="verhaal">{{ $verhaal[0]->verhaal}}</textarea>
