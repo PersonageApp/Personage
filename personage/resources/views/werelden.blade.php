@@ -10,8 +10,8 @@
 		@include('common.errors')
 		<form action="{{ url('werelden/post') }}" method="POST">
 			{{ csrf_field() }}
-			<input type="text" name="naam" class="form-control verhaal-toevoegen">
-			 <textarea class="form-control" id="verhaal-text" name="beschrijving"></textarea>
+			<input type="text" name="naam" class="form-control verhaal-toevoegen" placeholder="Naam">
+			 <textarea class="form-control" id="verhaal-text" name="beschrijving" placeholder="Beschrijving"></textarea>
 			<button type="submit" class="btn btn-primary">Voeg wereld toe</button>
 		</form>	
 	</div>
