@@ -19,6 +19,7 @@ html {
 }
 body {
   margin: 0;
+  min-width: 531px;
 }
 article,
 aside,
@@ -1227,7 +1228,7 @@ h2,
 .h2,
 h3,
 .h3 {
-  margin-top: 21px;
+  margin-top: 0px;
   margin-bottom: 10.5px;
 }
 h1 small,
@@ -2279,6 +2280,7 @@ th {
   padding: 6px;
   line-height: 1.42857143;
   border-top: 1px solid #4e5d6c;
+  font-size: 14px;
 }
 .table > thead > tr > th {
   vertical-align: bottom;
@@ -3026,6 +3028,7 @@ select[multiple].input-lg {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  border-radius: 3px;
 }
 .btn:focus,
 .btn:active:focus,
@@ -7036,4 +7039,12 @@ a.list-group-item-danger.active:focus {
 .button-test {
   display:block;
   list-style:none;
+}
+
+#verhalentab h2 {margin: 0; padding: 0;}
+
+.gaterug, .gaterug a:hover, .gaterug a:visited, .gaterug a:active, li.active.gaterug, li.gaterug.active, li.active.gaterug a {
+  background-color: #A57030 !important;
+  border-color: #A57030 !important;
+  float: right !important;
 }
