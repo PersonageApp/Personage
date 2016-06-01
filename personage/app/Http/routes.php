@@ -41,13 +41,14 @@ Route::post('/verhalen/post', function (Request $request) {
 	$verhalen = new \App\Verhalen;
     $verhalen->naam = Request::get('naam');
     $verhalen->verhaal = Request::get('verhaal');
+    $verhalen->id = Auth::user()->id;
     $verhalen->save();
 
     return redirect('/');
 });
 
 Route::post('/werelden/post', function (Request $request) {
-	$validator = Validator::make(Request::all(), ['naam' => 'required|max:50','beschrijving' => 'required']);
+	$validator = Validator::make(Request::all(), ['naam' => 'required|max:50','beschrijving' => 'required','verhaal_id' => 'required']);
 	if ($validator->fails()) {
 		return redirect('/')
 			->withInput()
@@ -57,6 +58,7 @@ Route::post('/werelden/post', function (Request $request) {
 	$werelden = new \App\Werelden;
     $werelden->naam = Request::get('naam');
     $werelden->beschrijving = Request::get('beschrijving');
+    $werelden->verhaal_id = Request::get('verhaal_id');
     $werelden->save();
 
     return redirect('/');
