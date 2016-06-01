@@ -65,7 +65,8 @@ Route::post('/werelden/post', function (Request $request) {
 });
 
 Route::delete('verhalen/{verhaal}', function ($id) {
-	$verhaal = DB::table('verhalen')->where('verhaal_id', $id)->delete();
+	DB::table('werelden')->where('verhaal_id', $id)->delete();
+	DB::table('verhalen')->where('verhaal_id', $id)->delete();
 
     return redirect('/');
 });
