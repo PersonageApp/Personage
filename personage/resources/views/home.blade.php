@@ -25,7 +25,10 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Naam</th>               
+                <th>Naam verhaal</th>
+                <th>Bekijken</th>
+                <th>Schrijven</th>
+                <th>Verwijderen</th>               
               </tr>
             </thead>
             <tbody>
@@ -36,14 +39,32 @@
                     <td><a class="button-test btn btn-primary" href="{{ url('verhalen/'.$user->verhaal_id .'/bekijken') }}"><i class="fa fa-edit"></i>Bekijken</a></td>
                     <td><a class="button-test btn btn-primary" href="{{ url('verhalen/'.$user->verhaal_id .'/schrijven') }}"><i class="fa fa-edit"></i> Schrijven</a></td>
                     <td>
-                      <form action="{{ url('verhalen/'.$user->verhaal_id) }}" method="POST">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                          <button type="submit" class="btn btn-danger">
-                            <i class="fa fa-trash"></i> Verwijderen
-                          </button>
-                      </form>
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i> Verwijderen</button>
                     </td>
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Verwijderen</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>Weet je zeker dat je dit verhaal wilt verwijderen?</p>
+                          </div>
+                          <div class="modal-footer">
+                            <form action="{{ url('verhalen/'.$user->verhaal_id) }}" method="POST">
+                              {{ csrf_field() }}
+                              {{ method_field('DELETE') }}
+                              <button type="submit" class="btn btn-danger">Verwijder</button>
+                            </form>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </tr>           
             </tbody><?php }}); ?>   
           </table> 
