@@ -7048,3 +7048,13 @@ a.list-group-item-danger.active:focus {
   border-color: #A57030 !important;
   float: right !important;
 }
+
+.clear {clear:both;}
+.basisinfo {padding:0px;}
+.basisinfo textarea {margin-bottom:10px; resize:none;}
+#personagePic {width:100%;height:auto;padding-right: 0px;min-height:500px;max-height:500px;}
+#personages {background-color:#4e5d6c;padding:20px;}
+#personages input[type=text] {display:block;margin-bottom:10px;}
+#personages textarea {width:100%;}
+.personage-overig {padding:0px;}
+.personage-overig textarea {resize:none;margin-bottom:10px;}
