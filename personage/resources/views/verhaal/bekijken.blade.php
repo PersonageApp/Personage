@@ -98,7 +98,38 @@
                 <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
             </div>
             <div class="tab-pane fade" id="personages">
-                <p>Tnd seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+                 <script type="text/javascript">
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('#personagePic').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+            </script>
+                <form action="{{ url('verhalen/' . $id . '/bekijken'}}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="col-md-6 basisinfo">
+                        <input class="col-md-12 form-control" placeholder="naam" type="text">
+                        <input class="col-md-12 form-control" placeholder="leeftijd" type="text">
+                        <label for="levend">Levend</label><input class="form-control" name="levend" type="checkbox">
+                        <textarea class="col-md-12 form-control" name="persoonlijkheid" placeholder="Karaktereigenschappen" cols="30" rows="10"></textarea>
+                        <textarea name="superkrachten"class="col-md-6 form-control" placeholder="Superkrachten" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="personage-afbeelding col-md-6">
+                        <img id="personagePic" src="" alt="Voeg foto toe" />
+                        <input type="file" class="btn btn-primary" onchange="readURL(this);" placeholder="Voeg afbeelding toe">  
+                    </div>
+                    <div class="personage-overig col-md-12">
+                        <textarea class="col-md-12 form-control" name="achtergrondinformatie" placeholder="Achtergrondinformatie" id="" cols="30" rows="10"></textarea>
+                       <textarea class="form-control" name="opmerkingen" placeholder="Voeg hier eventueel opmerkingen toe" cols="30" rows="10"></textarea>
+                    </div>
+                    <input type="submit">
+                </form>
+                <div class="clear"></div>
+            </div>
             </div>
         </div>
     </div>  
