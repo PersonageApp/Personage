@@ -50,7 +50,7 @@ Route::post('/verhalen/post', function (Request $request) {
 Route::post('/werelden/post', function (Request $request) {
 	$validator = Validator::make(Request::all(), ['naam' => 'required|max:50','beschrijving' => 'required','verhaal_id' => 'required']);
 	if ($validator->fails()) {
-		return redirect('/')
+		return Redirect::back() 
 			->withInput()
 			->withErrors($validator);
 	}
@@ -61,7 +61,7 @@ Route::post('/werelden/post', function (Request $request) {
     $werelden->verhaal_id = Request::get('verhaal_id');
     $werelden->save();
 
-    return redirect('/');
+    return redirect('/verhalen/'.$werelden->verhaal_id.'/bekijken');
 });
 
 Route::delete('verhalen/{verhaal}', function ($id) {
@@ -71,8 +71,7 @@ Route::delete('verhalen/{verhaal}', function ($id) {
     return redirect('/');
 });
 
-Route::get('verhalen/{verhaal}/edit', 'VerhaalController@bekijkBewerken');
-Route::post('verhalen/{verhaal}/edit', 'VerhaalController@update');
-
+Route::get('verhalen/{verhaal}/schrijven', 'VerhaalController@showEditForm');
+Route::post('verhalen/{verhaal}/schrijven', 'VerhaalController@update');
 
 Route::get('verhalen/{verhaal}/bekijken', 'VerhaalController@bekijkVerhaal');
