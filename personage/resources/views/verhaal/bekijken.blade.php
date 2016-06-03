@@ -109,7 +109,7 @@
                     }
                 }
             </script>
-                <form action="{{ url('verhalen/' . $id . '/bekijken'}}" method="POST">
+                <form action="" method="POST">
                     {{ csrf_field() }}
                     <div class="col-md-6 basisinfo">
                         <input class="col-md-12 form-control" placeholder="naam" type="text">
