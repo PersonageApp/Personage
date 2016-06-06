@@ -67,11 +67,15 @@ Route::post('/werelden/post', function (Request $request) {
 Route::delete('verhalen/{verhaal}', function ($id) {
 	DB::table('werelden')->where('verhaal_id', $id)->delete();
 	DB::table('verhalen')->where('verhaal_id', $id)->delete();
-
     return redirect('/');
 });
 
-Route::get('verhalen/{verhaal}/schrijven', 'VerhaalController@showEditForm');
-Route::post('verhalen/{verhaal}/schrijven', 'VerhaalController@update');
+Route::delete('werelden/{wereld}/', function ($id) {
+	DB::table('werelden')->where('wereld_id', $id)->delete();
+    return Redirect::back();
+});
+
+Route::get('verhalen/{verhaal}/edit', 'VerhaalController@bekijkBewerken');
+Route::post('verhalen/{verhaal}/edit', 'VerhaalController@update');
 
 Route::get('verhalen/{verhaal}/bekijken', 'VerhaalController@bekijkVerhaal');
