@@ -2269,7 +2269,7 @@ th {
 .table {
   width: 100%;
   max-width: 100%;
-  margin-bottom: 21px;
+  
 }
 .table > thead > tr > th,
 .table > tbody > tr > th,
@@ -7041,7 +7041,13 @@ a.list-group-item-danger.active:focus {
   list-style:none;
 }
 
-#verhalentab h2 {margin: 0; padding: 0;}
+.hrd {border-bottom: 1px solid #2b3e50; margin: 15px 0px;}
+
+.wereldverhaal {margin-left: -15px !important; margin-right: -15px;}
+
+
+#verhalentab h2 {margin: 0 !important; padding: 0 !important;}
+.panel-success h4, .panel-primary h4 {margin: 0 0 3px 0 !important; padding: 0px !important;}
 
 .gaterug, .gaterug a:hover, .gaterug a:visited, .gaterug a:active, li.active.gaterug, li.gaterug.active, li.active.gaterug a {
   background-color: #A57030 !important;
@@ -7058,3 +7064,7 @@ a.list-group-item-danger.active:focus {
 #personages textarea {width:100%;}
 .personage-overig {padding:0px;}
 .personage-overig textarea {resize:none;margin-bottom:10px;}
+
+.kop {text-align: center; padding:8px;}
+.kop h2 {margin: 0; padding: 0;}
+button.info {background: none; border: none; outline: none; text-align: center;padding: 0px;}

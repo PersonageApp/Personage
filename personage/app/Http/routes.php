@@ -64,6 +64,24 @@ Route::post('/werelden/post', function (Request $request) {
     return redirect('/verhalen/'.$werelden->verhaal_id.'/bekijken');
 });
 
+Route::post('/families/post', function (Request $request) {
+	$validator = Validator::make(Request::all(), ['naam' => 'required|max:50','beschrijving' => 'required','geschiedenis' => 'required','verhaal_id' => 'required']);
+	if ($validator->fails()) {
+		return Redirect::back() 
+			->withInput()
+			->withErrors($validator);
+	}
+
+	$families = new \App\Families;
+    $families->naam = Request::get('naam');
+    $families->beschrijving = Request::get('beschrijving');
+    $families->geschiedenis = Request::get('geschiedenis');
+    $families->verhaal_id = Request::get('verhaal_id');
+    $families->save();
+
+    return redirect('/verhalen/'.$families->verhaal_id.'/bekijken');
+});
+
 Route::delete('verhalen/{verhaal}', function ($id) {
 	DB::table('werelden')->where('verhaal_id', $id)->delete();
 	DB::table('verhalen')->where('verhaal_id', $id)->delete();
