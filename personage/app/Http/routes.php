@@ -10,7 +10,7 @@
 | and give it the ntroller to call when that URI is requested.
 |
 */
-
+ 
 
 
 
@@ -83,13 +83,20 @@ Route::post('/families/post', function (Request $request) {
 });
 
 Route::delete('verhalen/{verhaal}', function ($id) {
+	DB::table('locaties')->join('werelden', 'locaties.wereld_id', '=', 'werelden.wereld_id')->where('verhaal_id', $id)->delete();
 	DB::table('werelden')->where('verhaal_id', $id)->delete();
 	DB::table('verhalen')->where('verhaal_id', $id)->delete();
     return redirect('/');
 });
 
 Route::delete('werelden/{wereld}/', function ($id) {
+	DB::table('locaties')->join('werelden', 'locaties.wereld_id', '=', 'werelden.wereld_id')->where('verhaal_id', $id)->delete();
 	DB::table('werelden')->where('wereld_id', $id)->delete();
+    return Redirect::back();
+});
+
+Route::delete('werelden/{locatie}/', function ($id) {
+	DB::table('locaties')->join('werelden', 'locaties.wereld_id', '=', 'werelden.wereld_id')->where('verhaal_id', $id)->delete();
     return Redirect::back();
 });
 
@@ -97,3 +104,5 @@ Route::get('verhalen/{verhaal}/edit', 'VerhaalController@bekijkBewerken');
 Route::post('verhalen/{verhaal}/edit', 'VerhaalController@update');
 
 Route::get('verhalen/{verhaal}/bekijken', 'VerhaalController@bekijkVerhaal');
+
+
