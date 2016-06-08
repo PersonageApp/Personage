@@ -2,9 +2,8 @@
 
 @section('content')
 	<div class="container">
-	<h1>Bewerk het verhaal</h1>
 	<div class="panel panel-default">
-        <div class="panel-heading">Verhaal bewerken?</div>
+        <div class="panel-heading">Verhaal bewerken</div>
         <div class="panel-body">
             @include('common.errors')
             <form action="{{ url('verhalen/' . $id . '/edit') }}" method="POST">

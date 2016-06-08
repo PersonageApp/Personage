@@ -68,11 +68,9 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <?php
-                                    if ($user = DB::table('users')->where('role', '1')->first()) {
-                                        echo "<li><a href='/gebruikers'><i class='fa fa-btn fa-user'></i>Gebruikers beheren</a></li>";
-                                    }
-                                ?>
+                                <?php if (Auth::user()->role == 1) : ?>
+                                    <li><a href='/gebruikers'><i class='fa fa-btn fa-user'></i>Gebruikers beheren</a></li> 
+                                <?php endif; ?>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Uitloggen</a></li>
                             </ul>
                         </li>

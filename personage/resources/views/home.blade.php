@@ -19,7 +19,7 @@
     </div> 
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Bestaande verhalen</div>    
+        <div class="panel-heading">Bestaande verhalen (<?php echo $test = DB::table('verhalen')->where('id', Auth::id())->count(); ?> totaal)</div>    
         <div class="panel-body">
           <table class="table table-striped table-hover">
             <thead>
@@ -32,18 +32,16 @@
               </tr>
             </thead>
             <tbody>
-              <?php DB::table('verhalen')->orderBy('verhaal_id')->chunk(100, function($users) {
-                $i =0; foreach ($users as $user) {
-                  $i++;
-                    echo '<tr class="verhaal-tabel"><td class="tabel-kolom-count">'; echo $i; echo'</td><td class="tabel-kolom">'; echo $user->naam; echo'</td>';?>
+              <?php DB::table('verhalen')->orderBy('verhaal_id')->where('id', Auth::id())->chunk(100, function($users) { $i =0; foreach ($users as $user) { $i++; ?>
+                    <tr class="verhaal-tabel"><td class="tabel-kolom-count"><?php echo $i; ?></td><td class="tabel-kolom"><?php echo $user->naam; ?></td>
                     <td><a class="button-test btn btn-primary" href="{{ url('verhalen/'.$user->verhaal_id .'/bekijken') }}"><i class="fa fa-edit"></i> Bewerken</a></td>
                      <td><a class="button-test btn btn-primary" href="{{ url('verhalen/'.$user->verhaal_id .'/edit') }}"><i class="fa fa-edit"></i> Schrijven</a></td>
                     <td>
 
-                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i> Verwijderen</button>
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal<?php echo $i; ?>"><i class="fa fa-trash"></i> Verwijderen</button>
                     </td>
                     <!-- Modal -->
-                    <div id="myModal" class="modal fade" role="dialog">
+                    <div id="myModal<?php echo $i; ?>" class="modal fade" role="dialog">
                       <div class="modal-dialog">
 
                       <!-- Modal content-->
@@ -53,7 +51,7 @@
                             <h4 class="modal-title">Verwijderen</h4>
                           </div>
                           <div class="modal-body">
-                            <p>Weet je zeker dat je dit verhaal wilt verwijderen?</p>
+                            <p>Weet u zeker dat u het verhaal <strong><?php echo $user->naam; ?></strong> wilt verwijderen?<br> U verwijdert hiermee alle gegevens in het verhaal.</p>
                           </div>
                           <div class="modal-footer">
                             <form action="{{ url('verhalen/'.$user->verhaal_id) }}" method="POST">

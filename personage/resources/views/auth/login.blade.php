@@ -17,11 +17,6 @@
                         </div>   
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <input type="password" class="form-control" name="password" placeholder="Wachtwoord">
-                            @if ($errors->has('password'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                            @endif
                         </div> 
                         <div class="form-group" style="margin-bottom: 0px;">
                             <div class="checkbox">
@@ -32,15 +27,22 @@
                         </div>
                         @if ($errors->has('email'))
                         <div class="form-group" style="margin-bottom: 0px;">
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                                </div>
-                            @endif
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        </div>
+                        @endif
+                        @if ($errors->has('password'))
+                        <div class="form-group" style="margin-bottom: 0px;">
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        </div> 
+                        @endif
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" style="display: block;height: 92px;float: right;border-radius: 4px;">
+                            <button type="submit" class="btn btn-primary" style="display: block;height: 92px;float: right;border-radius: 4px;outline:none;">
                                 <i class="fa fa-btn fa-sign-in"></i>Login
                             </button>
                         </div>    
