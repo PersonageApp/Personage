@@ -246,7 +246,7 @@
                                             <td><?php echo $i; ?></td>
                                             <td>{{ $wereld->naam }}</td>
                                             <td>{{ $wereld->beschrijving }}</td>
-                                            <td><button class="btn btn-primary"><i class="fa fa-edit"> </i> Bewerken</button></td>
+                                            <td><a href="{{ url('verhalen/'.$wereld->verhaal_id .'/bekijken/'. $wereld->wereld_id .'/edit') }}" class="btn btn-primary"><i class="fa fa-edit"> </i> Bewerken</a></td>
                                             <td>
                                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#wereldoverzicht<?php echo $i; ?>"><i class="fa fa-trash"></i> Verwijderen</button>
                                             </td>

@@ -101,8 +101,12 @@ Route::delete('werelden/{locatie}/', function ($id) {
 });
 
 Route::get('verhalen/{verhaal}/edit', 'VerhaalController@bekijkBewerken');
-Route::post('verhalen/{verhaal}/edit', 'VerhaalController@update');
+Route::put('verhalen/{verhaal}/edit', 'VerhaalController@update');
 
 Route::get('verhalen/{verhaal}/bekijken', 'VerhaalController@bekijkVerhaal');
 
+Route::get('verhalen/{verhaal}/bekijken/{wereld}/edit', 'WereldController@BewerkWereld');
+Route::put('verhalen/{verhaal}/bekijken/{wereld}/edit', 'WereldController@update');
 
+Route::get('verhalen/{verhaal}/bekijken/{locatie}/editt', 'LocatieController@BewerkLocatie');
+Route::put('verhalen/{verhaal}/bekijken/{locatie}/editt', 'LocatieController@update');
