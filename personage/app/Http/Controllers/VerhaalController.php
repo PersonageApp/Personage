@@ -11,24 +11,20 @@ use App\Http\Controllers\Controller;
 
 class VerhaalController extends Controller
 {
-    public function showEditForm($id)
+    /* In deze functie word het verhaal geupdate, verhaal en naam worden geupdate en bij het versturen van het form word er een flash message meegestuurd naar de pagina waarna geredirect wordt. */    
+	public function update($id, Request $request) 
     	{
-    		$verhaal = DB::table('verhalen')->where('verhaal_id', $id)->get();
-    		return view('verhaal.schrijven', [
-    			'verhaal' => $verhaal
-    			]);
+    		DB::table('verhalen')->where('verhaal_id', $id)->update([
+    			'verhaal' => $request['verhaal'],
+    			'naam' => $request['naam']
+    		]);
+
+            flash()->success("Het verhaal '".$request->naam."' is succesvol bijgewerkt.");
+
+    		return redirect('/');
     	}
 
-	public function update($id, Request $request) 
-	{
-		DB::table('verhalen')->where('verhaal_id', $id)->update([
-				'verhaal' => $request['verhaal'],
-				'naam' => $request['naam']
-			]);
-
-		return redirect('/');
-	}
-
+    /* In deze functie word het verhaal opgehaald om te weergeven op de pagina van het verhaal. */ 
 	public function bekijkVerhaal($id)
 		{
     		$verhaal = DB::table('verhalen')->where('verhaal_id', $id)->get();
@@ -37,12 +33,13 @@ class VerhaalController extends Controller
     			]);
     	}	
 
+    /* In deze functie word het verhaal opgehaald om te weergeven in het form voor het verhaal te bewerken. */     
     public function bekijkBewerken($id)
-    	{
-    		$verhaal = DB::table('verhalen')->where('verhaal_id', $id)->get();
-    		return view('verhaal.edit', [
-    			'verhaal' => $verhaal,
-    			'id' => $id
-    			]);
-    	}	
+        {
+            $verhaal = DB::table('verhalen')->where('verhaal_id', $id)->get();
+            return view('verhaal.edit', [
+                'verhaal' => $verhaal,
+                'id' => $id
+            ]);
+        }   
 }

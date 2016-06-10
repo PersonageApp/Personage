@@ -3,6 +3,12 @@
 @section('content')
     <!-- container --> 
     <div class="container">
+        @if (Session::has('flash_notification.message'))
+            <div class="alert alert-{{ Session::get('flash_notification.level') }}">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ Session::get('flash_notification.message') }}
+            </div>
+        @endif
 
         <!-- tabs -->
         <ul class="nav nav-tabs">
@@ -360,6 +366,30 @@
                 </div>             
             </div>
             <!-- locatieoverzicht -->
+
+            <!-- locatie toevoegen -->
+            <div class="tab-pane fade" id="locatieToevoegen">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Locatie toevoegen <p style="float: right">Verhaal: {{ $verhaal[0]->naam }}</p></div>
+                    <div class="panel-body">
+                        @include('common.errors')
+                            <form action="{{ url('locaties/post') }}" method="POST">
+                            {{ csrf_field() }}
+                                <input type="text" name="naam" class="form-control verhaal-toevoegen" placeholder="Naam">
+                                <label for="select" class="col-lg-2 control-label" style="width: 10% !important; padding-top: 11px; font-size: 14px;">Wereld</label>
+                                <select name="wereld_id" class="form-control verhaal-toevoegen verhaal-toevoegen2">
+                                    <?php $werelden = DB::table('werelden')->where('verhaal_id', $verhaal[0]->verhaal_id)->get(); foreach ($werelden as $wereld) : ?>
+                                        <option value="<?php echo $wereld->wereld_id; ?>"><?php echo $wereld->naam; ?></option>  
+                                    <?php endforeach; ?>
+                                </select>
+                                <input type="text" name="afbeelding" class="form-control verhaal-toevoegen" placeholder="Afbeelding">
+                                <textarea class="form-control" id="verhaal-text" name="beschrijving" placeholder="Beschrijving"></textarea>
+                                <button type="submit" class="btn btn-primary">Voeg locatie toe</button>
+                            </form> 
+                        </div>
+                </div>
+            </div>
+            <!-- locatie toevoegen -->
 
             <!-- familieoverzicht -->
             <div class="tab-pane fade" id="familieOverzicht">

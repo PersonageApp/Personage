@@ -2,9 +2,8 @@
 
 @section('content')
 	<div class="container">
-	<h1>Bewerk de wereld</h1>
 	<div class="panel panel-default">
-        <div class="panel-heading">Wereld bewerken?</div>
+        <div class="panel-heading">Wereld bewerken</div>
         <div class="panel-body">
             @include('common.errors')
             <form action="{{ url('/verhalen/'. $wereld->verhaal_id .'/bekijken/'. $wereld->wereld_id .'/edit')}} " method="POST">
