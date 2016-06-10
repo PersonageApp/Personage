@@ -11,7 +11,7 @@
                 {{ method_field('PUT') }}
                 <input type="text" class="form-control verhaal-toevoegen" value="{{ $wereld->naam }}" name="naam">
                 <textarea class="form-control" id="verhaal-text" name="beschrijving">{{ $wereld->beschrijving }}</textarea>
-                <button type="submit" class="btn btn-primary">Verhaal bijwerken</button>
+                <button type="submit" class="btn btn-primary">Wereld bijwerken</button>
             </form> 
         </div>
     </div>  

@@ -56,12 +56,13 @@ Route::get('/', 'HomeController@index');
 	    return redirect('/');
 	});
 
+
 /* Werelden */ 	
 	/* Wereld Toevoegen */
 	Route::post('/werelden/post', function (Request $request) {
 		$validator = Validator::make(Request::all(), ['naam' => 'required|max:50','beschrijving' => 'required','verhaal_id' => 'required']);
 		if ($validator->fails()) {
-			return Redirect::back() 
+			return redirect('/verhalen/'.Request::get('verhaal_id').'/bekijken#wereldenToevoegen')
 				->withInput()
 				->withErrors($validator);
 		}
@@ -84,6 +85,7 @@ Route::get('/', 'HomeController@index');
 	/* Wereld Verwijderen */
 	Route::delete('werelden/{wereld}', 'WereldController@verwijderen');
 
+
 /* Locaties */
 	/* Locatie Toevoegen */
 	Route::post('/locaties/post', function (Request $request) {
@@ -100,20 +102,18 @@ Route::get('/', 'HomeController@index');
 	    $locaties->wereld_id = Request::get('wereld_id');
 	    $locaties->afbeelding = Request::get('afbeelding');
 	    $locaties->save();
-	    $verhaalid = DB::table('werelden')->join('locaties', 'werelden.wereld_id', '=', 'locaties.wereld_id')->where('wereld_id', $locaties->wereld_id)->first();
 
 	    flash()->success("De locatie '".$locaties->naam."' is succesvol toegevoegd.");
 
-	    return redirect('/verhalen/'.$verhaalid.'/bekijken#wereldenOverzicht');
+	    return Redirect::back();
 	});
 
-	/* Wereld Bewerken */
-	Route::get('verhalen/{verhaal}/bekijken/{wereld}/edit', 'WereldController@BewerkWereld');
-	Route::put('verhalen/{verhaal}/bekijken/{wereld}/edit', 'WereldController@update');
+	/* Locatie Bewerken */
+	Route::get('wereld/{wereld}/bekijken/{locatie}/edit', 'LocatieController@BewerkLocatie');
+	Route::put('wereld/{wereld}/bekijken/{locatie}/edit', 'LocatieController@update');
 
-	/* Wereld Verwijderen */
-	Route::delete('werelden/{wereld}', 'WereldController@verwijderen');
-
+	/* Locatie Verwijderen */
+	Route::delete('locaties/{locatie}', 'LocatieController@verwijderen');
 
 
 /* Families */
@@ -121,7 +121,7 @@ Route::get('/', 'HomeController@index');
 	Route::post('/families/post', function (Request $request) {
 		$validator = Validator::make(Request::all(), ['naam' => 'required|max:50','beschrijving' => 'required','geschiedenis' => 'required','verhaal_id' => 'required']);
 		if ($validator->fails()) {
-			return Redirect::back() 
+			return redirect('/verhalen/'.Request::get('verhaal_id').'/bekijken#familieToevoegen')
 				->withInput()
 				->withErrors($validator);
 		}
@@ -133,23 +133,49 @@ Route::get('/', 'HomeController@index');
 	    $families->verhaal_id = Request::get('verhaal_id');
 	    $families->save();
 
-	    return redirect('/verhalen/'.$families->verhaal_id.'/bekijken');
+	    flash()->success("De familie '".$families->naam."' is succesvol toegevoegd.");
+
+	    return redirect('/verhalen/'.$families->verhaal_id.'/bekijken#familieOverzicht');
 	});
 
-/* Locaties */
-	/* Locatie Verwijderen */
-	Route::delete('werelden/{locatie}/', function ($id) {
-		DB::table('locaties')->join('werelden', 'locaties.wereld_id', '=', 'werelden.wereld_id')->where('verhaal_id', $id)->delete();
+	/* Familie Bewerken */
+	Route::get('verhalen/{verhaal}/bekijken/{familie}/familie/edit', 'FamilieController@BewerkFamilie');
+	Route::put('verhalen/{verhaal}/bekijken/{familie}/familie/edit', 'FamilieController@update');
+
+	/* Familie Verwijderen */
+	Route::delete('families/{familie}', 'FamilieController@verwijderen');
+
+
+/* Personages */ 	
+	/* Personage Toevoegen */
+	Route::post('/personages/post', function (Request $request) {
+		$validator = Validator::make(Request::all(), ['naam' => 'required|max:50','leeftijd' => 'required','afbeelding' => 'required','geslacht' => 'required','superkrachten' => 'required','achtergrondinformatie' => 'required','levend' => 'required','opmerkingen' => 'required']);
+		if ($validator->fails()) {
+			return Redirect::back() 
+				->withInput()
+				->withErrors($validator);
+		}
+
+		$personages = new \App\Personages;
+	    $personages->naam = Request::get('naam');
+	    $personages->leeftijd = Request::get('leeftijd');
+	    $personages->afbeelding = Request::get('afbeelding');
+	    $personages->geslacht = Request::get('geslacht');
+	    $personages->superkrachten = Request::get('superkrachten');
+	    $personages->achtergrondinformatie = Request::get('achtergrondinformatie');
+	    $personages->levend = Request::get('levend');
+	    $personages->opmerkingen = Request::get('opmerkingen');
+	    $personages->familie_id = Request::get('familie_id');
+	    $personages->save();
+
+	    flash()->success("De personage '".$personages->naam."' is succesvol toegevoegd.");
+
 	    return Redirect::back();
 	});
 
+	/* Personage Bewerken */
+	Route::get('familie/{familie}/bekijken/{personage}/edit', 'PersonageController@BewerkPersonage');
+	Route::put('familie/{familie}/bekijken/{personage}/edit', 'PersonageController@update');
 
-
-
-
-
-
-
-
-Route::get('verhalen/{verhaal}/bekijken/{locatie}/editt', 'LocatieController@BewerkLocatie');
-Route::put('verhalen/{verhaal}/bekijken/{locatie}/editt', 'LocatieController@update');
+	/* Personage Verwijderen */
+	Route::delete('personage/{personage}', 'PersonageController@verwijderen');	

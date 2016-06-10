@@ -329,7 +329,7 @@
                                             <td><?php echo $p; ?></td>
                                             <td>{{ $locatie->naam }}</td>
                                             <td>{{ $locatie->beschrijving }}</td>
-                                            <td><button class="btn btn-primary"><i class="fa fa-edit"> </i> Bewerken</button></td>
+                                            <td><a href="{{ url('wereld/'.$locatie->wereld_id .'/bekijken/'. $locatie->locatie_id .'/edit') }}" class="btn btn-primary"><i class="fa fa-edit"> </i> Bewerken</a></td>
                                             <td>
                                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#locatieoverzicht<?php echo $p; ?>"><i class="fa fa-trash"></i> Verwijderen</button>
                                             </td>
@@ -346,7 +346,7 @@
                                                     <p>Weet je zeker dat je deze locatie <strong>{{ $locatie->naam }}</strong> wilt verwijderen?</p>
                                                   </div>
                                                   <div class="modal-footer">
-                                                    <form action="{{ url('werelden/'.$locatie->locatie_id) }}" method="POST">
+                                                    <form action="{{ url('locaties/'.$locatie->locatie_id) }}" method="POST">
                                                         {{ csrf_field() }}
                                                         {{ method_field('DELETE') }}
                                                         <button type="submit" class="btn btn-danger">Verwijderen</button>
@@ -415,11 +415,11 @@
                                             <td>{{ $familie->naam }}</td>
                                             <td>{{ $familie->beschrijving }}</td>
                                             <td>{{ $familie->geschiedenis }}</td>
-                                            <td><button class="btn btn-primary"><i class="fa fa-edit"> </i> Bewerken</button></td>
+                                            <td><a href="{{ url('verhalen/'.$familie->verhaal_id .'/bekijken/'. $familie->familie_id .'/familie/edit') }}" class="btn btn-primary"><i class="fa fa-edit"> </i> Bewerken</a></td>
                                             <td>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i> Verwijderen</button>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#familie<?php echo $i; ?>"><i class="fa fa-trash"></i> Verwijderen</button>
                                             </td>
-                                            <div id="myModal" class="modal fade" role="dialog">
+                                            <div id="familie<?php echo $i; ?>" class="modal fade" role="dialog">
                                               <div class="modal-dialog">
 
                                               <!-- Modal content-->
@@ -429,10 +429,14 @@
                                                     <h4 class="modal-title">Verwijderen</h4>
                                                   </div>
                                                   <div class="modal-body">
-                                                    <p>Weet je zeker dat je deze wereld wilt verwijderen?</p>
+                                                    <p>Weet je zeker dat je deze familie wilt verwijderen?</p>
                                                   </div>
                                                   <div class="modal-footer">
-                                                    
+                                                    <form action="{{ url('families/'.$familie->familie_id) }}" method="POST">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" class="btn btn-danger">Verwijderen</button>
+                                                    </form>
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
                                                   </div>
                                                 </div>
@@ -460,14 +464,127 @@
                                 <input type="hidden" value="{{ $verhaal[0]->verhaal_id }}" name="verhaal_id">
                                 <textarea class="form-control" id="verhaal-text" name="beschrijving" placeholder="Beschrijving"></textarea>
                                 <textarea class="form-control" id="verhaal-text" name="geschiedenis" placeholder="Geschiedenis"></textarea>
-                                <button type="submit" class="btn btn-primary">Voeg wereld toe</button>
+                                <button type="submit" class="btn btn-primary">Voeg familie toe</button>
                             </form> 
                         </div>
                 </div>
             </div>
             <!-- familie toevoegen -->
 
-            <!-- personage gedeelte* -->
+            <!-- personage overzicht -->
+            <div class="tab-pane fade" id="personageOverzicht">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Personage overzicht <p style="float: right">Verhaal: {{ $verhaal[0]->naam }}</p></div>
+                    <div class="panel-body">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                              <tr>
+                                <th width="5%">#</th>
+                                <th width="20%">Naam personage</th>
+                                <th width="15%">Geslacht</th>
+                                <th width="15%">Leeftijd</th>
+                                <th width="15%">Levend</th>
+                                <th width="15%">Bewerken</th> 
+                                <th width="15%">Verwijderen</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <?php DB::table('families')->orderBy('familie_id')->where('verhaal_id', $verhaal[0]->verhaal_id)->chunk(100, function($families) {$i =0; foreach ($families as $familie) { $i++; ?>
+                                    <?php DB::table('personages')->where('familie_id', $familie->familie_id)->chunk(100, function($personages) { $p =0; foreach ($personages as $personage) { $p++; ?>
+                                        <tr>
+                                            <td><?php echo $p; ?></td>
+                                            <td>{{ $personage->naam }}</td>
+                                            <td>
+                                                @if ($personage->geslacht === 'man')
+                                                    Man
+                                                @else    
+                                                    Vrouw
+                                                @endif
+                                            </td>
+                                            <td>{{ $personage->leeftijd }} jaar</td>
+                                            <td>
+                                                @if ($personage->levend === 1)
+                                                    Levend
+                                                @else    
+                                                    Overleden
+                                                @endif 
+                                            </td>
+                                            <td><a href="{{ url('familie/'.$personage->familie_id .'/bekijken/'. $personage->personage_id .'/edit') }}" class="btn btn-primary"><i class="fa fa-edit"> </i> Bewerken</a></td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#personageoverzicht<?php echo $p; ?>"><i class="fa fa-trash"></i> Verwijderen</button>
+                                            </td>
+                                            <div id="personageoverzicht<?php echo $p; ?>" class="modal fade" role="dialog">
+                                              <div class="modal-dialog">
+
+                                              <!-- Modal content-->
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Verwijderen</h4>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <p>Weet je zeker dat je deze personage <strong>{{ $personage->naam }}</strong> wilt verwijderen?</p>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <form action="{{ url('personage/'.$personage->personage_id) }}" method="POST">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" class="btn btn-danger">Verwijderen</button>
+                                                    </form>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </tr> 
+                                <?php }}); ?>   
+                             <?php }}); ?>        
+                            </tbody>
+                        </table>
+                                    
+                    </div>
+                </div>             
+            </div>
+            <!-- personage overzicht -->
+
+            <!-- personage toevoegen -->
+            <div class="tab-pane fade" id="personageToevoegen">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Personage toevoegen <p style="float: right">Verhaal: {{ $verhaal[0]->naam }}</p></div>
+                    <div class="panel-body">
+                        @include('common.errors')
+                            <form action="{{ url('personages/post') }}" method="POST">
+                            {{ csrf_field() }}
+                                <input type="text" name="naam" class="form-control verhaal-toevoegen" placeholder="Naam">
+                                <input type="text" name="afbeelding" class="form-control verhaal-toevoegen" placeholder="Afbeelding">
+                                <input type="number" min="0" max="120" name="leeftijd" class="form-control verhaal-toevoegen" placeholder="Leeftijd">
+                                <label for="select" class="col-lg-2 control-label" style="width: 10% !important; padding-top: 11px; font-size: 14px;">Geslacht</label>
+                                <select name="geslacht" class="form-control verhaal-toevoegen verhaal-toevoegen2">
+                                  <option value="man">Man</option>
+                                  <option value="vrouw">Vrouw</option>
+                                </select>
+                                <input type="text" name="superkrachten" class="form-control verhaal-toevoegen" placeholder="Superkrachten">
+                                <textarea class="form-control" id="verhaal-text" name="achtergrondinformatie" placeholder="Achtergrond Informatie"></textarea>
+                                <label for="select" class="col-lg-2 control-label" style="width: 10% !important; padding-top: 11px; font-size: 14px;">Levend</label>
+                                <select name="levend" class="form-control verhaal-toevoegen verhaal-toevoegen2">
+                                  <option value="1">Levend</option>
+                                  <option value="0">Overleden</option>
+                                </select>
+                                <textarea class="form-control" id="verhaal-text" name="opmerkingen" placeholder="Opmerkingen"></textarea>
+                                <label for="select" class="col-lg-2 control-label" style="width: 10% !important; padding-top: 11px; font-size: 14px;">Familie</label>
+                                <select name="familie_id" class="form-control verhaal-toevoegen verhaal-toevoegen2">
+                                    <?php $families = DB::table('families')->where('verhaal_id', $verhaal[0]->verhaal_id)->get(); foreach ($families as $familie) : ?>
+                                        <option value="<?php echo $familie->familie_id; ?>"><?php echo $familie->naam; ?></option>  
+                                    <?php endforeach; ?>
+                                </select>
+                                <button type="submit" class="btn btn-primary">Voeg personage toe</button>
+                            </form> 
+                        </div>
+                </div>
+            </div>
+            <!-- personage toevoegen -->
+
+            <!-- personage gedeelte -->
             <div class="tab-pane fade" id="personages">
                  <script type="text/javascript">
                 function readURL(input) {
