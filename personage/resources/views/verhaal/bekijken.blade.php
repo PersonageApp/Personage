@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@if (Auth::user())
     <!-- container --> 
     <div class="container">
         @if (Session::has('flash_notification.message'))
@@ -132,6 +133,19 @@
                                                         <h4 class="modal-title">Locatie</h4>
                                                       </div>
                                                       <div class="modal-body">
+                                                        <table >
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Naam</td>
+                                                                    <td>{{ $locatie->naam }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Afbeelding</td>
+                                                                    <td>{{ $locatie->afbeelding }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                           </table> 
+
                                                         <p>
                                                             {{ $locatie->naam }}<br>
                                                             {{ $locatie->afbeelding }}<br>
@@ -627,4 +641,13 @@
 
     </div>  
     <!-- container -->
+    @else
+        <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">Niet ingelogd</div>
+          <div class="panel-body">Je bent niet ingelogd.</div>
+         </div>
+        </div>  
+    @endif
+
 @stop

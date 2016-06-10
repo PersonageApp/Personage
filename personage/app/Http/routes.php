@@ -179,3 +179,34 @@ Route::get('/', 'HomeController@index');
 
 	/* Personage Verwijderen */
 	Route::delete('personage/{personage}', 'PersonageController@verwijderen');	
+
+/* Admin /*
+	/* Gebruiker Toevoegen */
+	Route::post('/gebruiker/post', function (Request $request) {
+		$validator = Validator::make(Request::all(), ['name' => 'required|max:255','email' => 'required|email|max:255|unique:users','password' => 'required|min:6']);
+		if ($validator->fails()) {
+			return Redirect::back() 
+				->withInput()
+				->withErrors($validator);
+		}
+
+		$gebruikers = new \App\Gebruikers;
+	    $gebruikers->name = Request::get('name');
+	    $gebruikers->email = Request::get('email');
+	    $gebruikers->password = bcrypt(Request::get('password'));
+	    $gebruikers->save();
+
+	    flash()->success("De gebruiker '".$gebruikers->name."' is succesvol toegevoegd.");
+
+	    return Redirect::back();
+	});
+
+	/* Gebruikers Bekijken */
+	Route::get('gebruikers', 'GebruikerController@show');
+
+	/* Gebruikers Bewerken */ 
+	Route::get('gebruikers/edit/{gebruiker}', 'GebruikerController@BewerkGebruiker');
+	Route::put('gebruikers/edit/{gebruiker}', 'GebruikerController@update');
+
+	/* Gebruikers Verwijderen */
+	Route::delete('gebruikers/{gebruiker}', 'GebruikerController@delete');
