@@ -133,26 +133,12 @@
                                                         <h4 class="modal-title">Locatie</h4>
                                                       </div>
                                                       <div class="modal-body">
-                                                        <table >
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>Naam</td>
-                                                                    <td>{{ $locatie->naam }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Afbeelding</td>
-                                                                    <td>{{ $locatie->afbeelding }}</td>
-                                                                </tr>
-                                                            </tbody>
-                                                           </table> 
-
-                                                        <p>
-                                                            {{ $locatie->naam }}<br>
-                                                            {{ $locatie->afbeelding }}<br>
-                                                            {{ $locatie->beschrijving }}<br>
-                                                            {{ $locatie->locatie_id }}<br>
-                                                            {{ $locatie->wereld_id }}<br>
-                                                        </p>
+                                                        <div style="width: 50%; display: inline-block; float: left;">Naam</div>
+                                                        <div style="width: 50%; display: inline-block; margin-bottom: 10px;">{{ $locatie->naam }}</div>
+                                                        <div style="width: 50%; display: inline-block; float: left;">Beschrijving</div>
+                                                        <div style="width: 50%; display: inline-block; margin-bottom: 10px;">{{ $locatie->beschrijving }}</div>
+                                                        <div style="width: 50%; display: inline-block; float: left;">Afbeelding</div>
+                                                        <div style="width: 50%; display: inline-block; margin-bottom: 10px;"><img src="{{ $locatie->afbeelding }}" style="max-width: 100%;"></div>
                                                       </div>
                                                       <div class="modal-footer">
                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
@@ -212,17 +198,20 @@
                                                         <h4 class="modal-title">Personage</h4>
                                                       </div>
                                                       <div class="modal-body">
-                                                        <p>
-                                                            {{ $personage->naam }}<br>
-                                                            {{ $personage->afbeelding }}<br>
-                                                            {{ $personage->leeftijd }}<br>
-                                                            {{ $personage->geslacht }}<br>
-                                                            {{ $personage->superkrachten }}<br>
-                                                            {{ $personage->achtergrondinformatie }}<br>
-                                                            {{ $personage->levend }}<br>
-                                                            {{ $personage->personage_id }}<br>
-                                                            {{ $personage->familie_id }}<br>
-                                                        </p>
+                                                        <div style="width: 50%; display: inline-block; float: left;">Naam</div>
+                                                        <div style="width: 50%; display: inline-block; margin-bottom: 10px;">{{ $personage->naam }}</div>
+                                                        <div style="width: 50%; display: inline-block; float: left;">Leeftijd</div>
+                                                        <div style="width: 50%; display: inline-block; margin-bottom: 10px;">{{ $personage->leeftijd }}</div>
+                                                        <div style="width: 50%; display: inline-block; float: left;">Geslacht</div>
+                                                        <div style="width: 50%; display: inline-block; margin-bottom: 10px;">@if ($personage->geslacht === 'man') Man @else Vrouw @endif</div>
+                                                        <div style="width: 50%; display: inline-block; float: left;">Superkrachten</div>
+                                                        <div style="width: 50%; display: inline-block; margin-bottom: 10px;">{{ $personage->superkrachten }}</div>
+                                                        <div style="width: 50%; display: inline-block; float: left;">Achtergrondinformatie</div>
+                                                        <div style="width: 50%; display: inline-block; margin-bottom: 10px;">{{ $personage->achtergrondinformatie }}</div>
+                                                        <div style="width: 50%; display: inline-block; float: left;">Levend</div>
+                                                        <div style="width: 50%; display: inline-block; margin-bottom: 10px;">@if ($personage->levend === 1) Levend @else Overleden @endif </div>
+                                                        <div style="width: 50%; display: inline-block; float: left;">Afbeelding</div>
+                                                        <div style="width: 50%; display: inline-block; margin-bottom: 10px;"><img src="{{ $personage->afbeelding }}" style="max-width: 100%;"></div>
                                                       </div>
                                                       <div class="modal-footer">
                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Sluit</button>
